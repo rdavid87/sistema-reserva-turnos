@@ -17,7 +17,7 @@ func NewSqlPaciente(db *sql.DB) StorePaciente {
 }
 
 func (s *sqlPaciente) Add(paciente *domain.Paciente) (int, error) {
-	res, err := s.db.Exec("INSERT INTO pacientes(apellido, nombre, dni, domicilio, fecha_alta) VALUES (?, ?, ?)", paciente.Apellido, paciente.Nombre, paciente.DNI, paciente.Domicilio, paciente.FechaAlta)
+	res, err := s.db.Exec("INSERT INTO pacientes(apellido, nombre, dni, domicilio, fecha_alta) VALUES (?, ?, ?, ?, ?)", paciente.Apellido, paciente.Nombre, paciente.DNI, paciente.Domicilio, paciente.FechaAlta)
 	if err != nil {
 		return 0, err
 	}

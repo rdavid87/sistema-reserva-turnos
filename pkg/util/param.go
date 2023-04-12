@@ -13,3 +13,7 @@ func GetIdFromParam(c *gin.Context) (int, error) {
 	}
 	return id, nil
 }
+
+func GetDNIFromParam(c *gin.Context) string {
+	return c.Param("dni")
+}

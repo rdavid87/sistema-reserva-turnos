@@ -17,3 +17,12 @@ type StorePaciente interface {
 	GetByID(id int) (*domain.Paciente, error)
 	GetAll() ([]*domain.Paciente, error)
 }
+
+type StoreTurno interface {
+	Add(turno *domain.TurnoAbstract) (int, error)
+	Update(turno *domain.Turno) error
+	Delete(id int) error
+	GetByID(id int) (*domain.Turno, error)
+	GetAll() ([]*domain.Turno, error)
+	GetByDNI(dni string) (*domain.TurnoDetalle, error)
+}
