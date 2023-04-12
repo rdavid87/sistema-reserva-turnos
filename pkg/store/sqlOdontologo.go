@@ -57,6 +57,21 @@ func (s *sqlOdontologo) GetByID(id int) (*domain.Odontologo, error) {
 	return &odontologo, nil
 }
 
+func (s *sqlOdontologo) GetByMatricula(matricula string) (*domain.Odontologo, error) {
+	row := s.db.QueryRow("SELECT id, apellido, nombre, matricula FROM odontologos WHERE matricula = ?", matricula)
+
+	var odontologo domain.Odontologo
+	err := row.Scan(&odontologo.Id, &odontologo.Apellido, &odontologo.Nombre, &odontologo.Matricula)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return &odontologo, nil
+		}
+		return &odontologo, err
+	}
+
+	return &odontologo, nil
+}
+
 func (s *sqlOdontologo) GetAll() ([]*domain.Odontologo, error) {
 	rows, err := s.db.Query("SELECT id, apellido, nombre, matricula FROM odontologos")
 	if err != nil {

@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "70284e91-e67e-4f3e-aff7-3619e8d7cba2",
+		"name": "Backend 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4065649"
+	},
+	"item": [
+		{
+			"name": "Odontologo",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/odontologo/",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/odontologo/2",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Catalina\",\r\n    \"apellido\": \"Monroe\",\r\n    \"matricula\": \"003-003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/odontologo",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Ronald\",\r\n    \"apellido\": \"Valencia\",\r\n    \"matricula\": \"001-001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/odontologo/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos\",\r\n    \"apellido\": \"Ramirez\",\r\n    \"matricula\": \"002-002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/odontologo/2",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos\",\r\n    \"matricula\": \"002-002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/odontologo/2",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"odontologo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/paciente/",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/paciente/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Perez\",\r\n    \"dni\": \"1234\",\r\n    \"domicilio\": \"casa de maria\",\r\n    \"fecha_alta\": \"2023-04-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/paciente",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Perez\",\r\n    \"domicilio\": \"casa de maria y perez\",\r\n    \"dni\": \"4567\",\r\n    \"fecha_alta\": \"2023-04-11 00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/paciente/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"domicilio\": \"casa de maria y perez\",\r\n    \"dni\": \"4543543\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/paciente/2",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos\",\r\n    \"matricula\": \"002-002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/paciente/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"paciente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Turno",
+			"item": [
+				{
+					"name": "get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/turno/",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/turno/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Dni",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_server}}/turno/query?dni=1234",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"query"
+							],
+							"query": [
+								{
+									"key": "dni",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"odontologo_id\": 1,\r\n    \"paciente_id\":2,\r\n    \"fecha\":\"2023-04-11\",\r\n    \"hora\":\"00:00:00\",\r\n    \"descripcion\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/turno",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post Dni Matricula",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\":\"2023-04-12\",\r\n    \"hora\":\"12:00:00\",\r\n    \"descripcion\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/turno/1234/001-001",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"1234",
+								"001-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Perez\",\r\n    \"domicilio\": \"casa de maria y perez\",\r\n    \"dni\": \"4567\",\r\n    \"fecha_alta\": \"2023-04-11 00:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/turno/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2023-04-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/turno/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos\",\r\n    \"matricula\": \"002-002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_server}}/turno/1",
+							"host": [
+								"{{url_server}}"
+							],
+							"path": [
+								"turno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_server",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

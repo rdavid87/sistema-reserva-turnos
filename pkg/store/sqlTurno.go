@@ -32,8 +32,8 @@ func (s *sqlTurno) Add(turno *domain.TurnoAbstract) (int, error) {
 	return turno.Id, nil
 }
 
-func (s *sqlTurno) Update(turno *domain.Turno) error {
-	_, err := s.db.Exec("UPDATE turnos SET odontologo_id = ?, paciente_id = ?, fecha = ?, hora = ?, descripcion = ? WHERE id = ?", turno.Odontologo.Id, turno.Paciente.Id, turno.Fecha, turno.Hora, turno.Descripcion, turno.Id)
+func (s *sqlTurno) Update(turno *domain.TurnoAbstract) error {
+	_, err := s.db.Exec("UPDATE turnos SET odontologo_id = ?, paciente_id = ?, fecha = ?, hora = ?, descripcion = ? WHERE id = ?", turno.OdontologoId, turno.PacienteId, turno.Fecha, turno.Hora, turno.Descripcion, turno.Id)
 	return err
 }
 
@@ -80,10 +80,10 @@ func (s *sqlTurno) GetAll() ([]*domain.Turno, error) {
 	return turnos, nil
 }
 
-func (s *sqlTurno) GetByDNI(dni string) (*domain.TurnoDetalle, error) {
+func (s *sqlTurno) GetByDNI(dni string) (*domain.TurnoResponse, error) {
 	row := s.db.QueryRow("SELECT turnos.id, CONCAT_WS(' ',odontologos.nombre, odontologos.apellido) AS odontologo, CONCAT_WS(' ',pacientes.nombre, pacientes.apellido) AS paciente, turnos.fecha, turnos.hora, turnos.descripcion FROM turnos INNER JOIN pacientes ON (turnos.paciente_id = pacientes.id) INNER JOIN odontologos ON (turnos.odontologo_id = odontologos.id) WHERE (pacientes.dni =?)", dni)
 
-	var turno domain.TurnoDetalle
+	var turno domain.TurnoResponse
 	err := row.Scan(&turno.Id, &turno.Odontologo, &turno.Paciente, &turno.Fecha, &turno.Hora, &turno.Descripcion)
 	if err != nil {
 		if err == sql.ErrNoRows {

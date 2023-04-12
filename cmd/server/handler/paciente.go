@@ -43,11 +43,28 @@ func (h *pacienteHandler) Add(c *gin.Context) {
 }
 
 func (h *pacienteHandler) Update(c *gin.Context) {
+	id, err := util.GetIdFromParam(c)
+	if err != nil {
+		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
+		return
+	}
+	existe, err := h.service.GetByID(id)
+	if err != nil {
+		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
+		return
+	}
+	if existe == nil {
+		web.NotFound(c)
+		return
+	}
+
 	var paciente domain.Paciente
 	if err := c.ShouldBindJSON(&paciente); err != nil {
 		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
 		return
 	}
+	paciente.Id = existe.Id
+
 	if err := h.service.Update(&paciente); err != nil {
 		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
 		return
@@ -56,16 +73,48 @@ func (h *pacienteHandler) Update(c *gin.Context) {
 }
 
 func (h *pacienteHandler) Patch(c *gin.Context) {
-	var paciente domain.Paciente
+	id, err := util.GetIdFromParam(c)
+	if err != nil {
+		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
+		return
+	}
+	existe, err := h.service.GetByID(id)
+	if err != nil {
+		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
+		return
+	}
+	if existe.Id == 0 {
+		web.NotFound(c)
+		return
+	}
+
+	var paciente domain.PacienteAbstract
 	if err := c.ShouldBindJSON(&paciente); err != nil {
 		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
 		return
 	}
-	if err := h.service.Update(&paciente); err != nil {
+
+	if paciente.Apellido != "" {
+		existe.Apellido = paciente.Apellido
+	}
+
+	if paciente.Nombre != "" {
+		existe.Nombre = paciente.Nombre
+	}
+
+	if paciente.DNI != "" {
+		existe.DNI = paciente.DNI
+	}
+
+	if paciente.Domicilio != "" {
+		existe.Domicilio = paciente.Domicilio
+	}
+
+	if err := h.service.Update(existe); err != nil {
 		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
 		return
 	}
-	web.Success(c, http.StatusOK, paciente)
+	web.Success(c, http.StatusOK, existe)
 }
 
 func (h *pacienteHandler) Delete(c *gin.Context) {

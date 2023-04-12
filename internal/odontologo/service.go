@@ -7,6 +7,7 @@ type Service interface {
 	Update(odontologo *domain.Odontologo) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Odontologo, error)
+	GetByMatricula(matricula string) (*domain.Odontologo, error)
 	GetAll() ([]*domain.Odontologo, error)
 }
 
@@ -32,6 +33,10 @@ func (s *service) Delete(id int) error {
 
 func (s *service) GetByID(id int) (*domain.Odontologo, error) {
 	return s.repo.GetByID(id)
+}
+
+func (s *service) GetByMatricula(matricula string) (*domain.Odontologo, error) {
+	return s.repo.GetByMatricula(matricula)
 }
 
 func (s *service) GetAll() ([]*domain.Odontologo, error) {

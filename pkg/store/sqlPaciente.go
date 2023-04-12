@@ -57,6 +57,21 @@ func (s *sqlPaciente) GetByID(id int) (*domain.Paciente, error) {
 	return &paciente, nil
 }
 
+func (s *sqlPaciente) GetByDNI(dni string) (*domain.Paciente, error) {
+	row := s.db.QueryRow("SELECT id, apellido, nombre, dni, domicilio, fecha_alta FROM pacientes WHERE dni = ?", dni)
+
+	var paciente domain.Paciente
+	err := row.Scan(&paciente.Id, &paciente.Apellido, &paciente.Nombre, &paciente.DNI, &paciente.Domicilio, &paciente.FechaAlta)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return &paciente, nil
+		}
+		return &paciente, err
+	}
+
+	return &paciente, nil
+}
+
 func (s *sqlPaciente) GetAll() ([]*domain.Paciente, error) {
 	rows, err := s.db.Query("SELECT id, apellido, nombre, dni, domicilio, fecha_alta FROM pacientes")
 	if err != nil {

@@ -7,6 +7,7 @@ type Service interface {
 	Update(paciente *domain.Paciente) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Paciente, error)
+	GetByDNI(dni string) (*domain.Paciente, error)
 	GetAll() ([]*domain.Paciente, error)
 }
 
@@ -32,6 +33,10 @@ func (s *service) Delete(id int) error {
 
 func (s *service) GetByID(id int) (*domain.Paciente, error) {
 	return s.repo.GetByID(id)
+}
+
+func (s *service) GetByDNI(dni string) (*domain.Paciente, error) {
+	return s.repo.GetByDNI(dni)
 }
 
 func (s *service) GetAll() ([]*domain.Paciente, error) {

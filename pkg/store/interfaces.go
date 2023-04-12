@@ -7,6 +7,7 @@ type StoreOdontologo interface {
 	Update(odontologo *domain.Odontologo) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Odontologo, error)
+	GetByMatricula(matricula string) (*domain.Odontologo, error)
 	GetAll() ([]*domain.Odontologo, error)
 }
 
@@ -15,14 +16,15 @@ type StorePaciente interface {
 	Update(paciente *domain.Paciente) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Paciente, error)
+	GetByDNI(dni string) (*domain.Paciente, error)
 	GetAll() ([]*domain.Paciente, error)
 }
 
 type StoreTurno interface {
 	Add(turno *domain.TurnoAbstract) (int, error)
-	Update(turno *domain.Turno) error
+	Update(turno *domain.TurnoAbstract) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Turno, error)
 	GetAll() ([]*domain.Turno, error)
-	GetByDNI(dni string) (*domain.TurnoDetalle, error)
+	GetByDNI(dni string) (*domain.TurnoResponse, error)
 }

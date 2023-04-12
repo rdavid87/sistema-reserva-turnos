@@ -15,5 +15,9 @@ func GetIdFromParam(c *gin.Context) (int, error) {
 }
 
 func GetDNIFromParam(c *gin.Context) string {
-	return c.Param("dni")
+	return c.Request.URL.Query().Get("dni")
+}
+
+func GetDniMatriculaFromParam(c *gin.Context) (string, string) {
+	return c.Param("dni"), c.Param("matricula")
 }

@@ -34,7 +34,7 @@ func main() {
 	storageTurno := store.NewSqlTurno(db)
 	turnoRepo := turno.NewRepository(storageTurno)
 	turnoService := turno.NewService(turnoRepo)
-	turnoHandler := handler.NewTurnoHandler(turnoService)
+	turnoHandler := handler.NewTurnoHandler(turnoService, odontologoService, pacienteService)
 
 	// Creación del enrutador HTTP
 	r := gin.Default()
@@ -65,8 +65,9 @@ func main() {
 	turnoRoutes := r.Group("/turno")
 	{
 		turnoRoutes.POST("/", turnoHandler.Add)
+		turnoRoutes.POST("/:dni/:matricula", turnoHandler.AddByDniMatricula)
 		turnoRoutes.GET("/:id", turnoHandler.GetByID)
-		turnoRoutes.GET("/dni/:dni", turnoHandler.GetByDNI)
+		turnoRoutes.GET("/query", turnoHandler.GetByDNI)
 		turnoRoutes.GET("/", turnoHandler.GetAll)
 		turnoRoutes.PUT("/:id", turnoHandler.Update)
 		turnoRoutes.PATCH("/:id", turnoHandler.Patch)

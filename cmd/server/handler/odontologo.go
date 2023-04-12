@@ -43,11 +43,29 @@ func (h *odontologoHandler) Add(c *gin.Context) {
 }
 
 func (h *odontologoHandler) Update(c *gin.Context) {
+
+	id, err := util.GetIdFromParam(c)
+	if err != nil {
+		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
+		return
+	}
+	existe, err := h.service.GetByID(id)
+	if err != nil {
+		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
+		return
+	}
+	if existe == nil {
+		web.NotFound(c)
+		return
+	}
+
 	var odontologo domain.Odontologo
 	if err := c.ShouldBindJSON(&odontologo); err != nil {
 		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
 		return
 	}
+	odontologo.Id = existe.Id
+
 	if err := h.service.Update(&odontologo); err != nil {
 		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
 		return
@@ -56,16 +74,44 @@ func (h *odontologoHandler) Update(c *gin.Context) {
 }
 
 func (h *odontologoHandler) Patch(c *gin.Context) {
-	var odontologo domain.Odontologo
+	id, err := util.GetIdFromParam(c)
+	if err != nil {
+		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
+		return
+	}
+	existe, err := h.service.GetByID(id)
+	if err != nil {
+		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
+		return
+	}
+	if existe.Id == 0 {
+		web.NotFound(c)
+		return
+	}
+
+	var odontologo domain.OdontologoAbstract
 	if err := c.ShouldBindJSON(&odontologo); err != nil {
 		web.Failure(c, http.StatusBadRequest, errors.New(err.Error()))
 		return
 	}
-	if err := h.service.Update(&odontologo); err != nil {
+
+	if odontologo.Apellido != "" {
+		existe.Apellido = odontologo.Apellido
+	}
+
+	if odontologo.Nombre != "" {
+		existe.Nombre = odontologo.Nombre
+	}
+
+	if odontologo.Matricula != "" {
+		existe.Matricula = odontologo.Matricula
+	}
+
+	if err := h.service.Update(existe); err != nil {
 		web.Failure(c, http.StatusInternalServerError, errors.New(err.Error()))
 		return
 	}
-	web.Success(c, http.StatusOK, odontologo)
+	web.Success(c, http.StatusOK, existe)
 }
 
 func (h *odontologoHandler) Delete(c *gin.Context) {

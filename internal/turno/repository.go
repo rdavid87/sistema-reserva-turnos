@@ -7,11 +7,11 @@ import (
 
 type Repository interface {
 	Add(turno *domain.TurnoAbstract) (int, error)
-	Update(turno *domain.Turno) error
+	Update(turno *domain.TurnoAbstract) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Turno, error)
 	GetAll() ([]*domain.Turno, error)
-	GetByDNI(dni string) (*domain.TurnoDetalle, error)
+	GetByDNI(dni string) (*domain.TurnoResponse, error)
 }
 
 type repository struct {
@@ -26,7 +26,7 @@ func (r *repository) Add(turno *domain.TurnoAbstract) (int, error) {
 	return r.storage.Add(turno)
 }
 
-func (r *repository) Update(turno *domain.Turno) error {
+func (r *repository) Update(turno *domain.TurnoAbstract) error {
 	return r.storage.Update(turno)
 }
 
@@ -42,6 +42,6 @@ func (r *repository) GetAll() ([]*domain.Turno, error) {
 	return r.storage.GetAll()
 }
 
-func (r *repository) GetByDNI(dni string) (*domain.TurnoDetalle, error) {
+func (r *repository) GetByDNI(dni string) (*domain.TurnoResponse, error) {
 	return r.storage.GetByDNI(dni)
 }

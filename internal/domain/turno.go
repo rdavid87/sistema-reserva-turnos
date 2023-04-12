@@ -11,18 +11,18 @@ type Turno struct {
 
 type TurnoAbstract struct {
 	Id           int    `json:"id"`
-	OdontologoId int    `json:"odontologo_id" binding:"required"`
-	PacienteId   int    `json:"paciente_id" binding:"required"`
-	Fecha        string `json:"fecha" binding:"required"`
-	Hora         string `json:"hora" binding:"required"`
+	OdontologoId int    `json:"odontologo_id"`
+	PacienteId   int    `json:"paciente_id"`
+	Fecha        string `json:"fecha"`
+	Hora         string `json:"hora"`
 	Descripcion  string `json:"descripcion"`
 }
 
-type TurnoDetalle struct {
-	Id          int    `json:"id"`
-	Paciente    string `json:"paciente" binding:"required"`
-	Odontologo  string `json:"odontologo" binding:"required"`
-	Fecha       string `json:"fecha" binding:"required"`
-	Hora        string `json:"hora" binding:"required"`
-	Descripcion string `json:"descripcion"`
+type TurnoResponse struct {
+	Id          int
+	Paciente    string
+	Odontologo  string
+	Fecha       string
+	Hora        string
+	Descripcion string
 }

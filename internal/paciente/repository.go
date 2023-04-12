@@ -10,6 +10,7 @@ type Repository interface {
 	Update(paciente *domain.Paciente) error
 	Delete(id int) error
 	GetByID(id int) (*domain.Paciente, error)
+	GetByDNI(dni string) (*domain.Paciente, error)
 	GetAll() ([]*domain.Paciente, error)
 }
 
@@ -35,6 +36,9 @@ func (r *repository) Delete(id int) error {
 
 func (r *repository) GetByID(id int) (*domain.Paciente, error) {
 	return r.storage.GetByID(id)
+}
+func (r *repository) GetByDNI(dni string) (*domain.Paciente, error) {
+	return r.storage.GetByDNI(dni)
 }
 
 func (r *repository) GetAll() ([]*domain.Paciente, error) {
